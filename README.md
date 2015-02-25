@@ -1,7 +1,9 @@
 karma-sinon-ie
 ==============
 
-Sinon for karma, includes `sinon-ie` for IE compatiblity. The IE compatibility files are required when using fake timers, for more information see the [Sinon Docs](http://sinonjs.org/docs/#clock).
+[Sinon](http://sinonjs.org/) for [Karma](http://karma-runner.github.io/) with `sinon-ie` included for IE compatibility.
+
+Use this package over [karma-sinon](https://www.npmjs.com/package/karma-sinon) **only** if you require IE support when using fake timers, `XMLHttpRequest` or `XDomainRequest`.
 
 Installation
 ------------
@@ -9,7 +11,7 @@ Installation
 Install the module via npm
 
 ```sh
-$ npm install karma-sinon --save-dev
+$ npm install karma-sinon-ie --save-dev
 ```
 
 Add `sinon` to the `frameworks` key in your Karma configuration:
