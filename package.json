@@ -7,7 +7,7 @@
         "sinon",
         "mock"
     ],
-    "version": "1.0.4",
+    "version": "1.0.2",
     "main": "./index.js",
     "author": {
         "name": "Levi Buzolic",
@@ -39,6 +39,6 @@
     "engines": {
         "node": ">= 0.10.0"
     },
-    "_id": "karma-sinon-ie@1.0.4",
+    "_id": "karma-sinon-ie@1.0.2",
     "_from": "karma-sinon-ie@*"
 }
