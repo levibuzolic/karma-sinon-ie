@@ -1,7 +1,7 @@
 karma-sinon-ie
 ==============
 
-Sinon for karma, includes `sinon-ie` for IE compatiblity.
+Sinon for karma, includes `sinon-ie` for IE compatiblity. The IE compatibility files are required when using fake timers, for more information see the [Sinon Docs](http://sinonjs.org/docs/#clock).
 
 Installation
 ------------
