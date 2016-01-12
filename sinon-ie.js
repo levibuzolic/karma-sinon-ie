@@ -33,17 +33,23 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-var __SINON_MSIE_VERSION = null;
+var ____APPLY_PATCH = false;
 (function(){
   if (navigator && navigator.userAgent) {
-    var match = navigator.userAgent.match(/MSIE (\d+\.\d+)/);
-    if (match && match.length == 2) {
-      __SINON_MSIE_VERSION = parseFloat(match[1]);
+    var match = navigator.userAgent.match(/((MSIE|PhantomJS).(\d+))/i);
+    if (match && match.length >= 2) {
+      var browser = match[match.length-2].toLowerCase();
+      var version = parseInt(match[match.length-1]);
+      if (browser == 'msie' && version < 11) {
+        ____APPLY_PATCH = true;
+      } else if (browser == 'phantomjs') {
+        ____APPLY_PATCH = true;
+      }
     }
   }
 })();
 
-if (typeof window !== "undefined" && __SINON_MSIE_VERSION && __SINON_MSIE_VERSION < 11) {
+if (____APPLY_PATCH) {
   function setTimeout() {}
   function clearTimeout() {}
   function setImmediate() {}
