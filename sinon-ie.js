@@ -43,7 +43,7 @@ var __SINON_MSIE_VERSION = null;
   }
 })();
 
-if (typeof window !== "undefined" && __SINON_MSIE_VERSION < 11) {
+if (typeof window !== "undefined" && __SINON_MSIE_VERSION && __SINON_MSIE_VERSION < 11) {
   function setTimeout() {}
   function clearTimeout() {}
   function setImmediate() {}
