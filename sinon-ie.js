@@ -38,7 +38,7 @@ var ____APPLY_PATCH = true;
   if (navigator && navigator.userAgent) {
     var uaRegexes = [
       /\s+Edge\/\d+\./, // Microsoft Edge
-      /MSIE 11\./ // IE 11.x
+      /Trident\/7\./ // IE 11.x
     ];
 
     for (var i = 0; i < uaRegexes.length; i++) {
