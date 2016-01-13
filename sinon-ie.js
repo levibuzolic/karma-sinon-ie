@@ -33,17 +33,17 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-var ____APPLY_PATCH = false;
+var ____APPLY_PATCH = true;
 (function(){
   if (navigator && navigator.userAgent) {
-    var match = navigator.userAgent.match(/((MSIE|PhantomJS).(\d+))/i);
-    if (match && match.length >= 2) {
-      var browser = match[match.length-2].toLowerCase();
-      var version = parseInt(match[match.length-1]);
-      if (browser == 'msie' && version < 11) {
-        ____APPLY_PATCH = true;
-      } else if (browser == 'phantomjs') {
-        ____APPLY_PATCH = true;
+    var uaRegexes = [
+      /\s+Edge\/\d+\./, // Microsoft Edge
+      /MSIE 11\./ // IE 11.x
+    ];
+
+    for (var i = 0; i < uaRegexes.length; i++) {
+      if (uaRegexes[i].test(navigator.userAgent)) {
+        ____APPLY_PATCH = false;
       }
     }
   }
