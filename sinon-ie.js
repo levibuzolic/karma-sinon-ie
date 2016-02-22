@@ -38,8 +38,8 @@ console.log(navigator.userAgent);
 (function(){
   if (navigator && navigator.userAgent) {
     var uaRegexes = [
-      /MSIE [5-9]\./ // Microsoft Internet Explorer 5-9
-      /MSIE 10\./ // Microsoft Internet Explorer 5-9
+      /MSIE [5-9]\./, // Microsoft Internet Explorer 5-9
+      /MSIE 10\./, // Microsoft Internet Explorer 5-9
       /PhantomJS\/[12]\./ // PhantomJS 1.x & 2.x
     ];
 
