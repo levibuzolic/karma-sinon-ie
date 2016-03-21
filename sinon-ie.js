@@ -1,75 +1,26 @@
-/**
- * Sinon.JS 1.17.2, 2015/10/21
- *
- * @author Christian Johansen (christian@cjohansen.no)
- * @author Contributors: https://github.com/cjohansen/Sinon.JS/blob/master/AUTHORS
- *
- * (The BSD License)
- *
- * Copyright (c) 2010-2014, Christian Johansen, christian@cjohansen.no
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without modification,
- * are permitted provided that the following conditions are met:
- *
- *   * Redistributions of source code must retain the above copyright notice,
- *     this list of conditions and the following disclaimer.
- *   * Redistributions in binary form must reproduce the above copyright notice,
- *     this list of conditions and the following disclaimer in the documentation
- *     and/or other materials provided with the distribution.
- *   * Neither the name of Christian Johansen nor the names of his contributors
- *     may be used to endorse or promote products derived from this software
- *     without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
- * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
- * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
- * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
- * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
- * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
-
-var ____APPLY_PATCH = true;
-(function(){
-  if (navigator && navigator.userAgent) {
-    var uaRegexes = [
-      /\s+Edge\/\d+\./, // Microsoft Edge
-      /Trident\/7\./, // IE 11.x
-      /Chrome\/(49|[5-9]\d)\./ // Chrome 49+
-    ];
-
-    for (var i = 0; i < uaRegexes.length; i++) {
-      if (uaRegexes[i].test(navigator.userAgent)) {
-        ____APPLY_PATCH = false;
-      }
-    }
-  }
-})();
-
-if (____APPLY_PATCH) {
-  function setTimeout() {}
-  function clearTimeout() {}
-  function setImmediate() {}
+try {
+  // This will catch IE which will throw a "Object doesn't support this action"
+  setTimeout = setTimeout;
+  // This will catch PhantomJS which somehow has already optimistly already applied the functions below.
+  new Date().getTime();
+} catch (error) {
   function clearImmediate() {}
-  function setInterval() {}
   function clearInterval() {}
+  function clearTimeout() {}
   function Date() {}
-  function XMLHttpRequest() {}
+  function setImmediate() {}
+  function setInterval() {}
+  function setTimeout() {}
   function XDomainRequest() {}
+  function XMLHttpRequest() {}
 
-  // Reassign the original functions. Now their writable attribute
-  // should be true. Hackish, I know, but it works.
-  setTimeout = sinon.timers.setTimeout;
-  clearTimeout = sinon.timers.clearTimeout;
-  setImmediate = sinon.timers.setImmediate;
   clearImmediate = sinon.timers.clearImmediate;
-  setInterval = sinon.timers.setInterval;
   clearInterval = sinon.timers.clearInterval;
+  clearTimeout = sinon.timers.clearTimeout;
   Date = sinon.timers.Date;
-  XMLHttpRequest = sinon.xhr.XMLHttpRequest || undefined;
+  setImmediate = sinon.timers.setImmediate;
+  setInterval = sinon.timers.setInterval;
+  setTimeout = sinon.timers.setTimeout;
   XDomainRequest = sinon.xdr.XDomainRequest || undefined;
+  XMLHttpRequest = sinon.xhr.XMLHttpRequest || undefined;
 }

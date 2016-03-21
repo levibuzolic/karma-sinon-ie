@@ -8,15 +8,13 @@ Use this package instead of [karma-sinon](https://www.npmjs.com/package/karma-si
 
 ## Version 2.x
 
-Previously in `1.x` this package just loaded `sinon-ie.js` (see [util-ie](https://github.com/sinonjs/sinon/tree/master/lib/sinon/util-ie)) from the [sinon](https://www.npmjs.com/package/sinon) module -- this worked fine, however recently I noticed some strange issues in Internet Explorer 11 and Microsoft Edge. Somehow the patched timers (and other objects) would no longer have their native methods present and we'd see things like `TypeError: undefined is not a function (evaluating 'Date.parse()')`.
+Previously in `1.x` this package just loaded `sinon-ie.js` (see [util-ie](https://github.com/sinonjs/sinon/tree/master/lib/sinon/util-ie)) from the [sinon](https://www.npmjs.com/package/sinon) module -- this worked fine, however newer browsers like Chrome 49+ and Microsoft Edge seem to have issues with the redfined global function hack so I've rewritten the way the hack gets applied to prevent it being applied in environments which don't need it.
 
-It seems IE11 and Edge don't like the way `sinon-ie.js` overrides the native methods, so I've wrapped the application of the patch in a user agent conditional -- it's not the best fix, but it's the best I've been able to come up with so far. 
-
-Please [create an issue](https://github.com/levibuzolic/karma-sinon-ie/issues/new) if you encounter any issues!
+Please [create an issue](https://github.com/levibuzolic/karma-sinon-ie/issues/new) if you find any bugs or browsers that don't behave correctly.
 
 ## Installation
 
-Install the module via npm
+Install the module via npm and remove `karma-sinon` if you already have it installed.
 
 ```sh
 $ npm install karma-sinon-ie --save-dev
